@@ -1,8 +1,21 @@
 // Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
-// // Variables
+// Variables
 @import 'variables';
-// // Bootstrap
+// Bootstrap
 @import 'bootstrap/scss/bootstrap';
 // Posts Cards Style
 @import 'postCard';
+body {
+    color: var(--bs-body-color);
+}
+
+form {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1em 0;
+    label {
+        font-weight: bold;
+    }
+}

@@ -4,23 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -28,7 +23,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'content' => 'required',
+            'image' => 'nullable||string',
+            'tags' => 'nullable||string',
+          ]);
+
+          Post::create([
+            'content' => $request->content,
+            'tags' => $request['tags'],
+            'image' => $request->input('image'),
+            'user_id' => Auth::user()->id
+        ]);
+        
+          return redirect()->route('home')
+            ->with('success', 'Post crée avec succès!');
     }
 
     /**
