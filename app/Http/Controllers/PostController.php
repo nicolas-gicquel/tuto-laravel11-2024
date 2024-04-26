@@ -53,7 +53,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        if (Auth::user()->id == $post->user_id) {
+            return view('post.edit', compact('post'));
+        } else {
+            return redirect()->route('home')->withErrors(['erreur' => 'Vous n\'êtes pas autorisé à modifier ce post']);
+        }
     }
 
     /**
@@ -61,14 +65,26 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
-    }
+        $request->validate([
+            'content' => 'required|max:255',
+            'image' => 'nullable||string',
+            'tags' => 'nullable||string',
+          ]);
+       
+          $post->update($request->all());
 
+          return redirect()->route('home')->with('message', 'Le post a bien été modifié.');
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Post $post)
     {
-        //
+        if (Auth::user()->id == $post->user_id) {
+            $post->delete();
+            return redirect()->route('home')->with('message', 'Le post a bien été supprimé');
+        } else {
+            return redirect()->back()->withErrors(['erreur' => 'Suppression du post impossible']);
+        }
     }
 }
