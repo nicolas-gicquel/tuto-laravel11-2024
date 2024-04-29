@@ -39,6 +39,8 @@
                 </div>
             </form>
 
+            <a  class="text-center mt-2" href="{{ url()->previous() }}">Revenir à la page précédente</a>
+
 
 
         </div>

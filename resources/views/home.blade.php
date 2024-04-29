@@ -4,6 +4,7 @@
     <div class="container">
         
         <div class="row justify-content-center">
+            <a class="btn btn-primary" href="{{ route('posts.create') }}">Ajouter un post</a>
             <h2 class="text-dark">Liste des Posts</h2>
             @foreach ($posts as $post)
 
@@ -24,6 +25,12 @@
                         <li class="tag__item"><i class="fas fa-tag mr-2"></i> {{$post->tags}}</li>
                     </ul>
                 </div>
+                @if (Auth::user()->id== $post->user_id)
+                <div class="z-3 mt-2" >
+                    <a class="" href="{{route('posts.edit',$post)}}"><i class="far fa-edit"></i></a>
+                </div>
+                @endif
+                
             </article>
             @endforeach
 

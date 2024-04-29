@@ -37,7 +37,7 @@
                             <form action="{{ route('posts.destroy', $post) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Supprimer le compte</button>
+                                <button type="submit" class="btn btn-danger">Supprimer le post</button>
                             </form>
                         </div>
 
