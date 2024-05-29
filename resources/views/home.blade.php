@@ -21,6 +21,9 @@
                     </div>
                     <div class="postcard__bar"></div>
                     <div class="postcard__preview-txt">{{$post->content}}</div>
+                    <div>
+                        <a href="{{ route('comments.create', $post->id) }}">Ajouter un commentaire</a>
+                    </div>
                     <ul class="postcard__tagbox">
                         <li class="tag__item"><i class="fas fa-tag mr-2"></i> {{$post->tags}}</li>
                     </ul>
@@ -30,6 +33,12 @@
                     <a class="" href="{{route('posts.edit',$post)}}"><i class="far fa-edit"></i></a>
                 </div>
                 @endif
+
+                @foreach ($post->comments as $comment )
+                    <ul>
+                        <li>{{$comment->content}}</li>
+                    </ul>
+                @endforeach
                 
             </article>
             @endforeach
