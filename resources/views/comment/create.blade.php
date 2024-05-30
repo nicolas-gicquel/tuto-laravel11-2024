@@ -33,7 +33,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="tags">Tags</label>
+                    
                     <input required type="hidden" class="form-control" name="post_id" value="{{ request()->query('post_id') }}"
                         id="tags">
                     
